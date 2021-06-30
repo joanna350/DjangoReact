@@ -39,4 +39,4 @@ npm run dev
 ```
 python3 manage.py runserver
 ```
-- Add data under the endpoint ```https://localhost:port/api/lead/```
+- Add data under the endpoint ```localhost:port/api/lead/```
