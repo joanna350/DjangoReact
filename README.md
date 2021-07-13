@@ -7,16 +7,9 @@
 ```
 mkdir __folder_name__ && cd $_
 
-python3 -m venv venv
-source vene/bin/activate
-
+python3 -m venv .
+source bin/activate
 pip3 install -r requirements.txt
-```
-
-#### Run basic coverage
-```
-coverage run --source='.' manage.py test
-coverage report
 ```
 
 #### React Frontend
@@ -51,10 +44,16 @@ npm i cypress --save-dev
 node_modules/.bin/cypress/ open
 ```
 
+#### Run basic coverage
+```
+coverage run --source='.' manage.py test
+coverage report
+```
+
+
 #### Celery with Redis as Broker
 - Install Redis
 ```
-pip3 install celery
 (Mac) brew install redis
 ```
 (Ubuntu) follow [directions](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04)
