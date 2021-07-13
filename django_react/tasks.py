@@ -1,17 +1,13 @@
-from celery import shared_task
-from .celery import app
+#from .celery import app
+import requests
+from bs4 import BeautifulSoup
 
 
-@shared_task()
-def add(x, y):
-    return x + y
-
-
-@app.task()
-def mul(x, y):
-    return x * y
-
-
-@app.task()
-def xsum(numbers):
-    return sum(numbers)
+# app.task()
+def count(start, end, postD, commentD):
+    url = 'http://localhost:8000/api/lead'
+    page = requests.get(url)
+    page = page.json() # List[dict()]
+    for content in page:
+        if content['']
+    print(len(page.json()))

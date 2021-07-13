@@ -36,9 +36,10 @@ class App extends Component {
       <ul>
         {this.state.data.map(contact => {
           return (
-            <li key={contact.id}>
-              {contact.name} - {contact.email}
-            </li>
+            <div key={contact.id}>
+              <h3>{contact.name}</h3>
+              <p> {contact.message}</p>
+            </div>
           );
         })}
       </ul>
