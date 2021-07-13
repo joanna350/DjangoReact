@@ -10,7 +10,7 @@ mkdir __folder_name__ && cd $_
 python3 -m venv venv
 source vene/bin/activate
 
-pip3 install django djangorestframework
+pip3 install -r requirements.txt
 ```
 
 #### Run basic coverage

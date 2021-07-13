@@ -33,7 +33,6 @@ class App extends Component {
 
   render() {
     return (
-        <title>test</title>
       <ul>
         {this.state.data.map(contact => {
           return (
