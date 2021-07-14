@@ -44,11 +44,7 @@ INSTALLED_APPS = [
     "leads.apps.LeadsConfig",
     "rest_framework",
     "frontend",
-    "django_celery_beat",
-    "django_celery_results",
 ]
-
-CELERY_RESULT_BACKEND = "django-db"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
