@@ -45,3 +45,9 @@ python3 manage.py runserver
 python3 scheduler.py '2011-02-15' '2021-08-31' 11 7 15 18
 ```
 - Format to pass start of the period, end of the period, day to post, days to comment as parameters
+
+#### Vectorizer
+```
+python3 vectorizer.py
+```
+- Treats each post or comment as a document. Sentences longer than 1 is accepted input

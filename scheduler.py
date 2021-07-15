@@ -10,9 +10,6 @@ from datetime import date
 from datetime import datetime
 
 
-# todo x: preprocess the 'post' text data and convert into data vector (cosine similarity for later)
-
-
 class Holder():
     cache = {}
 
@@ -32,8 +29,7 @@ class Holder():
         category 1 for post 0 for comment
         '''
         url = 'http://localhost:8000/api/lead'
-        page = requests.get(url)
-        page = page.json() # List[dict()]
+        page = requests.get(url).json() # List[dict()]
 
         if category: filtered_posts = 0
         else: filtered_comments = 0
@@ -100,12 +96,12 @@ class Holder():
                     a.writerow({headers[0]: filtered_comments, headers[1]: filtered_posts})
 
     def check_day(self, dt):
-
+        '''debugging purpose'''
         base = date(2021,7,15)
         return True if date(dt.year, dt.month, dt.day) == base else False
 
     def check_end_of_month(self, timeinfo):
-
+        '''for monthly aggregation'''
         last_day_of_month = calendar.monthrange(timeinfo.year, timeinfo.month)[1]
         return True if timeinfo.day == last_day_of_month else False
 
