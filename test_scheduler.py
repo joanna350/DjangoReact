@@ -1,6 +1,6 @@
-import pytest
 from scheduler import Holder, parseDate
 from datetime import date, datetime
+
 
 inst = Holder(1, [2])
 
@@ -14,7 +14,9 @@ def test_count():
     assert inst.count(0) == 0
 
 def test_trigger():
-    pass
+    inst.trigger()
+    assert inst.cache['daily_post_count'] == {}
+    assert inst.cache['daily_comment_count'] == {}
 
 def test_check_day():
     dt = date(2021,7,15)
