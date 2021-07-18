@@ -2,7 +2,6 @@ import os
 import requests
 import schedule
 import calendar
-import time
 
 from argparse import ArgumentParser
 from csv import DictWriter
@@ -28,11 +27,18 @@ class Holder():
         consumed by trigger functions
         category 1 for post 0 for comment
         '''
+
         url = 'http://localhost:8000/api/lead'
-        page = requests.get(url).json() # List[dict()]
+
+        try:
+            page = requests.get(url).json() # List[dict()]
+        except:
+            print('host the Django web service first')
+            raise
 
         if category: filtered_posts = 0
         else: filtered_comments = 0
+
         for content in page:
             timestamp = content['created_at']
             y,m,d = int(timestamp[:4]), int(timestamp[5:7]), int(timestamp[8:10])
@@ -95,13 +101,19 @@ class Holder():
                     a = DictWriter(file, fieldnames=headers)
                     a.writerow({headers[0]: filtered_comments, headers[1]: filtered_posts})
 
-    def check_day(self, dt):
-        '''debugging purpose'''
+    @staticmethod
+    def check_day(dt):
+        '''
+        debugging purpose
+        '''
         base = date(2021,7,15)
         return True if date(dt.year, dt.month, dt.day) == base else False
 
-    def check_end_of_month(self, timeinfo):
-        '''for monthly aggregation'''
+    @staticmethod
+    def check_end_of_month(timeinfo):
+        '''
+        for monthly aggregation
+        '''
         last_day_of_month = calendar.monthrange(timeinfo.year, timeinfo.month)[1]
         return True if timeinfo.day == last_day_of_month else False
 
@@ -125,8 +137,15 @@ def parseDate(input):
     y, m, d = int(input[:4]), int(input[5:7]), int(input[8:])
     return y, m, d
 
-if __name__ == '__main__':
 
+def main():
+    '''
+    main script to
+    - retrieve parameters from stdin
+    - sets the time period for long running task with schedule API with the params
+    - invokes relevant functions in the sequence to conduct the goal
+    separated for testing purpose
+    '''
     start, end, postD, commentD = argparser()
 
     y, m, d = parseDate(start)
@@ -142,4 +161,8 @@ if __name__ == '__main__':
         while _from <= datetime.utcnow().date() <= _until:
             schedule.run_pending()
         else:
-            time.sleep(1)
+            break
+
+
+if __name__ == '__main__':
+    main()
