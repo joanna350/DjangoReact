@@ -121,14 +121,18 @@ def argparser():
     return args['s'], args['e'], args['p'], args['c']
 
 
+def parseDate(input):
+    y, m, d = int(input[:4]), int(input[5:7]), int(input[8:])
+    return y, m, d
+
 if __name__ == '__main__':
 
     start, end, postD, commentD = argparser()
 
-    y, m, d = int(start[:4]), int(start[5:7]), int(start[8:])
+    y, m, d = parseDate(start)
     _from = date(y, m, d)
 
-    y, m, d = int(end[:4]), int(end[5:7]), int(end[8:])
+    y, m, d = parseDate(end)
     _until = date(y, m, d)
 
     inst = Holder(postD, commentD)
