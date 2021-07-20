@@ -35,44 +35,19 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py runserver
 ```
+
+#### Create Test Data
 - Add data under the endpoint ```localhost:port/api/lead/```
 
-#### Cypress Test
-- At the root of the project
-```
-npm i cypress --save-dev
-node_modules/.bin/cypress/ open
-```
 
-#### Run basic coverage
+#### Scheduler
 ```
-coverage run --source='.' manage.py test
-coverage report
+python3 scheduler.py '2011-02-15' '2021-08-31' 11 7 15 18
 ```
+- Format to pass start of the period, end of the period, day to post, days to comment as parameters
 
-
-#### Celery with Redis as Broker
-- Install Redis
+#### Vectorizer
 ```
-(Mac) brew install redis
+python3 vectorizer.py
 ```
-(Ubuntu) follow [directions](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04)
-
-
-- On one terminal, start the redis server
-```
-(Mac) brew services start redis
-(Ubuntu) sudo systemctl enable redis
-```
-- Check the connection is established with ```redis-cli```
-
-- On another terminal, run the following
-```
-celery -A django_react worker --loglevel=DEBUG
-celery -A django_react worker --beat -l info -S django
-```
-- Clear out redis connection after all the runs
-```
-(Mac) brew services stop redis
-(Ubuntu) sudo systemctl stop redis
-```
+- Treats each post or comment as a document. Sentences longer than 1 is accepted input
