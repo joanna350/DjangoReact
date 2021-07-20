@@ -9,14 +9,13 @@ def test_init():
     assert inst.commentD == [2]
 
 def test_count():
-
     assert inst.count(1) == 0
     assert inst.count(0) == 0
 
 def test_trigger():
     inst.trigger()
-    assert inst.cache['daily_post_count'] == {}
-    assert inst.cache['daily_comment_count'] == {}
+    assert inst.cache['daily_post_count'] == {2021: {7: [0]}}
+    assert inst.cache['daily_comment_count'] == {2021: {7: [0]}}
 
 def test_check_day():
     dt = date(2021,7,15)
@@ -31,6 +30,3 @@ def test_parseDate():
     assert y == 2021
     assert m == 7
     assert d == 15
-
-def test_main():
-    pass
