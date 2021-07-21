@@ -1,3 +1,8 @@
+#### Project Scope
+- Django app takes in user id, email, message from an endpoint and saves them with the datetime of creation.
+- React component is utilized through Webpack to show the data uploaded from the endpoint.
+- Scheduler.py will help count the messages uploaded on a day or a list of days within a time range.
+
 #### Evironment
 - Python3
 - Mac OS Catalina / Ubuntu 18.04
