@@ -1,8 +1,8 @@
 #### Project Scope
 - Django app takes in user id, email, message from an endpoint and saves them with the datetime of creation
-- React component is utilized through Webpack to show the data uploaded from the endpoint
-- Scheduler.py will count the messages uploaded on a day or a list of days within a time range, and cache into instance variable
-- By the end or any day of choice each month, sum of all the daily counts can be exported to csv files
+- React component is utilized through Webpack to paginate the data aggregated at the endpoint
+- Scheduler.py will count the messages uploaded at the end of each day on a day or a list of days within a time range, (all user input) and cache into instance variable
+- By the end of day of the end of month, daily counts will be summed and exported/appended to csv file
 
 #### Evironment
 - Python3
@@ -48,7 +48,7 @@ python3 manage.py runserver
 
 #### Scheduler
 ```
-python3 scheduler.py '2011-02-15' '2021-08-31' 11 7 15 18
+python3 scheduler.py 2011-02-15 2021-08-31 11 7 15 18
 ```
 - Format to pass start of the period, end of the period, day to post, days to comment as parameters
 
